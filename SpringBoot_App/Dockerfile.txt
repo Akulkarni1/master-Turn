@@ -1,0 +1,50 @@
+FROM ubuntu:16.04
+
+
+RUN apt-get update && apt-get install -y vim wget curl
+
+# Install ``python-software-properties``, ``software-properties-common``
+RUN apt-get install -y python-software-properties software-properties-common
+
+# Install Python + Pip
+RUN apt-get install -y python-pip
+RUN apt-get install -y libgeos-dev
+RUN pip install psycopg2
+RUN add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
+RUN pip install -U Pillow modestmaps simplejson werkzeug uuid mapnik shapely
+
+COPY /config/ ./
+
+RUN cat tt-tilestache.cfg
+
+# Install Tilestache
+
+RUN pip install -U TileStache
+
+RUN apt install -y gdal-bin python-gdal python3-gdal
+RUN pip install mapbox-vector-tile
+RUN apt-get update
+RUN apt-get install -y apache2
+RUN mkdir /var/www/html/tiles
+RUN apt-get install libapache2-mod-python
+RUN pip install mapbox-vector-tile
+RUN cp -r /usr/local/lib/python2.7/dist-packages/TileStache /var/www/html/tiles
+
+COPY ./apache/000-default.conf etc/apache2/sites-available/000-default.conf
+
+RUN a2enmod headers
+RUN a2ensite 000-default
+
+RUN service apache2 restart
+
+RUN apachectl -t
+
+# cache dir to container
+RUN mkdir /var/www/cache-efs
+
+
+# Default command
+CMD ["apachectl", "-D", "FOREGROUND"]
+
+# Ports 
+EXPOSE 80
