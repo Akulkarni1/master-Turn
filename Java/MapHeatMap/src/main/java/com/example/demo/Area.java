@@ -2,6 +2,7 @@ package com.example.demo;
 import java.util.Date;
 import com.vividsolutions.jts.geom.Geometry;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,28 +13,30 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "areas")
 public class Area {
 
-       @Id
+       @Id  
        @GeneratedValue(strategy = GenerationType.IDENTITY)
        @Column(name="ID")
        private long id;
        @Column(name="featureId")
-      String featureId;
+      UUID featureId;
        @Column(name = "type") 
        String type; 
-       Map<String, Object> attributes;
+       //Map<String, Object> attributes;
        
         @Column(name = "geom")
-       Geometry geometry;
+        Geometry geometry;
         
         protected Area() {}
 
-        public Area(String newValFeature, Geometry newValGeom, String newValType) {
+        public Area(int id,UUID newValFeature, Geometry newValGeom, String newValType) {
+            this.id = id;
             this.featureId = newValFeature;
             this.geometry = newValGeom;
             this.type = newValType;
@@ -43,8 +46,8 @@ public class Area {
         @Override
         public String toString() {
             return String.format(
-                    "Area[id=%d, FeatureID ='%s', type='%s',Geom = '%s',Attributes = '%s']",
-                    id, featureId, type,geometry,attributes);
+                    "Area[id=%d, FeatureID ='%s', type='%s',Geom = '%s']",
+                    id, featureId, type,geometry);
         }
 
         
@@ -58,12 +61,12 @@ public class Area {
         }
 
         
-        public String getFeatureId() {
+        public UUID getFeatureId() {
             return featureId;
         }
 
         
-        public void setFeatureId(String featureId) {
+        public void setFeatureId(UUID featureId) {
             this.featureId = featureId;
         }
 
@@ -77,7 +80,7 @@ public class Area {
             this.type = type;
         }
 
-        
+        /*
         public Map<String, Object> getAttributes() {
             return attributes;
         }
@@ -86,7 +89,8 @@ public class Area {
         public void setAttributes(Map<String, Object> attributes) {
             this.attributes = attributes;
         }
-
+*/
+        
         
         public Geometry getGeometry() {
             return geometry;

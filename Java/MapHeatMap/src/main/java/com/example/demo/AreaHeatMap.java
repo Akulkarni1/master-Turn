@@ -2,6 +2,7 @@ package com.example.demo;
 import java.util.Date;
 import com.vividsolutions.jts.geom.Geometry;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,21 +23,25 @@ public class AreaHeatMap {
 	   @GeneratedValue(strategy = GenerationType.IDENTITY)
 	   @Column(name="ID")
 	   private long id;
-	   @Column(name="featureId")
-	  String featureId;
-	   @Column(name = "type") 
-	   String type; 
-	   Map<String, Object> attributes;
+	   
+	   @Column(name="feature_id")
+	  UUID featureId;
+	  // @Column(name = "type") 
+	   //String type; 
+	  // @Column(name = "attributes")
+	  // Map<String, Object> attributes;
 	   
 	   @Temporal(TemporalType.TIMESTAMP)
 	   public Date date;
 	    @Column(name = "geom")
 	   Geometry geometry;
-	    
-	    public AreaHeatMap(String newValFeature, Geometry newValGeom, String newValType) {
-            this.featureId = newValFeature;
+	    public AreaHeatMap() {}
+	    public AreaHeatMap(int id,UUID newValFeature, Geometry newValGeom,Date date) {
+            this.id = id;
+	        this.featureId = newValFeature;
             this.geometry = newValGeom;
-            this.type = newValType;
+            this.date =date;
+           // this.type = newValType;
             
         }
 
@@ -44,7 +49,7 @@ public class AreaHeatMap {
         public String toString() {
             return String.format(
                     "Area[id=%d, FeatureID ='%s', type='%s',Geom = '%s',attributes = '%s',time ='%s']",
-                    id, featureId, type,geometry,attributes,date);
+                    id, featureId, geometry,date);
         }
 
         
@@ -58,17 +63,17 @@ public class AreaHeatMap {
         }
 
         
-        public String getFeatureId() {
+        public UUID getFeatureId() {
             return featureId;
         }
 
         
-        public void setFeatureId(String featureId) {
+        public void setFeatureId(UUID featureId) {
             this.featureId = featureId;
         }
 
         
-        public String getType() {
+       /* public String getType() {
             return type;
         }
 
@@ -87,7 +92,7 @@ public class AreaHeatMap {
             this.attributes = attributes;
         }
 
-        
+        */
         public Date getDate() {
             return date;
         }
