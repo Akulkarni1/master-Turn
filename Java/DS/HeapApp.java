@@ -89,7 +89,24 @@ class HeapImpl {
 			trickleDown(index); 
 		return true;
 	} 
+	public int findFirst() {
+		System.out.println(heapArray[0].getData());
+		return heapArray[0].getData();
+	}
+	//Finding the n-th decreasing/increasing the elements.
+	public int findNthPosition(int n) {
+		try {
+		if(currentSize>n) {
+		System.out.println(heapArray[n-1].getData());
+		return heapArray[n-1].getData();
+		}
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
 		
+		return 0;
+	}
 	public void displayHeap(){
 	
 		System.out.print("heapArray: ");
