@@ -60,6 +60,23 @@ class LinkedList_Impl<T> {
 
 	}
 
+	public void remove_end() {
+		SL_LinkedListNode<T> temp = first;
+		SL_LinkedListNode<T> prev = first;
+		if (temp.getNext() != null) {
+			while (temp.getNext() != null) {
+				prev = temp;
+				temp = temp.getNext();
+
+			}
+
+			prev.next = null;
+			return;
+		} else
+			first = null;
+		return;
+	}
+
 	public void printList(SL_LinkedListNode<T> node) {
 		SL_LinkedListNode temp = first;
 		while (temp != null) {
@@ -113,25 +130,28 @@ class DL_LinkedListNode<T> {
 	}
 
 }
-class DL_LinkedList_Impl<T>{
+
+class DL_LinkedList_Impl<T> {
 	DL_LinkedListNode<T> head = null;
+
 	public void insert_start(DL_LinkedListNode<T> newVal) {
-		if(head==null) {
+		if (head == null) {
+			head = newVal;
+		} else {
+			newVal.next = head;
+			head.prev = newVal;
 			head = newVal;
 		}
-		else {
-		newVal.next = head;
-		head.prev = newVal;
-		head = newVal;
-		}
 	}
+
 	public void printlist(DL_LinkedListNode<T> newVal) {
 		DL_LinkedListNode<T> temp = newVal;
-		while(temp!=null) {
+		while (temp != null) {
 			System.out.println(temp.getData());
 			temp = temp.getNext();
 		}
 	}
+
 	public void remove() {
 		if (head.getNext() != null) {
 			head = head.getNext();
@@ -139,37 +159,57 @@ class DL_LinkedList_Impl<T>{
 			head = null;
 
 	}
+
+	public void remove_end() {
+
+		DL_LinkedListNode<T> temp = head;
+		DL_LinkedListNode<T> prev = head;
+		if (temp.getNext() != null) {
+			while (temp.getNext() != null) {
+				prev = temp;
+				temp = temp.getNext();
+
+			}
+
+			prev.next = null;
+			return;
+		} else
+			head = null;
+		return;
+	}
+
 	public void print() {
 		printlist(head);
 	}
+
 	public void insert_end(DL_LinkedListNode<T> newVal) {
 		DL_LinkedListNode temp = head;
-		if(temp == null) {
+		if (temp == null) {
 			temp = newVal;
 			return;
-		}
-		else {
-			while(temp.getNext()!=null) {
+		} else {
+			while (temp.getNext() != null) {
 				temp = temp.getNext();
 			}
 			temp.next = newVal;
-			newVal.prev =temp;
+			newVal.prev = temp;
 			temp = newVal;
 			return;
 		}
 	}
-	
+
 }
 
 public class LList_App {
 	public static void main(String[] args) {
-		DL_LinkedList_Impl<String> list = new DL_LinkedList_Impl<String>();
-		list.insert_start(new DL_LinkedListNode<String>("Generic list"));
-		list.insert_start(new DL_LinkedListNode<String>("Hello"));
-		list.insert_start(new DL_LinkedListNode<String>("World"));
-		list.insert_end(new DL_LinkedListNode<String>("End of the list"));
+		LinkedList_Impl<String> list = new LinkedList_Impl<String>();
+		list.insert_start(new SL_LinkedListNode<String>("Generic List"));// (new DL_LinkedListNode<String>("Generic
+																			// list"));
+		list.insert_start(new SL_LinkedListNode<String>("Hello"));
+		list.insert_start(new SL_LinkedListNode<String>("World"));
+		list.insert_end(new SL_LinkedListNode<String>("End of the list"));
 		list.print();
-		list.remove();
+		list.remove_end();
 		System.out.println("After removing the head..");
 		list.print();
 	}
