@@ -1,0 +1,37 @@
+FROM alphine
+
+RUN apk add --update && apk add -y vim wget curl
+
+# Install ``python-software-properties``, ``software-properties-common``
+RUN apk add python-software-properties software-properties-common 
+
+# Install Python + Pip
+RUN apk add -y python-pip
+RUN apk add -y libgeos-dev
+RUN apk add -y python-psycopg2
+RUN apk add -y ppa:ubuntugis/ubuntugis-unstable
+RUN apk update  
+RUN apk add -y gdal-bin python-gdal python3-gdal 
+
+
+# Install reqs for Tilestache
+RUN pip install -U Pillow modestmaps simplejson werkzeug uuid mapnik shapely
+
+COPY tilestache.cfg ./tilestache.cfg
+
+RUN cat tilestache.cfg
+
+# Install Tilestache
+RUN curl -o tilestache.tar.gz http://tilestache.org/download/TileStache-1.49.8.tar.gz
+RUN tar xzf tilestache.tar.gz && cd TileStache-1.49.8 && python setup.py install && cd ../
+RUN rm tilestache.tar.gz
+
+# Write start script to start postgres and tilestache together
+RUN echo """#!/bin/bash \n \
+          tilestache-server.py -i 0.0.0.0 -c tilestache.cfg""" >> start.sh
+RUN chmod +x /start.sh
+
+# Expose the Tilestache port
+EXPOSE 8080
+
+CMD ["/start.sh"] 
