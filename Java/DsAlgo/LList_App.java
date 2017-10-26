@@ -89,6 +89,21 @@ class LinkedList_Impl<T> {
 	public void print() {
 		printList(first);
 	}
+	
+	public void reverseList() {
+		SL_LinkedListNode prev =null;
+		SL_LinkedListNode curr = first;
+		SL_LinkedListNode next = null;
+		while(curr!= null) {
+			next = curr.getNext();
+			curr.setNext(prev);
+			prev = curr;
+			curr = next;
+		}
+		first = prev;
+		print();
+	}
+	
 }
 
 /*
@@ -197,21 +212,35 @@ class DL_LinkedList_Impl<T> {
 			return;
 		}
 	}
+	public void reverseList() {
+		DL_LinkedListNode prev =null;
+		DL_LinkedListNode curr = head;
+		DL_LinkedListNode next = null;
+		while(curr!= null) {
+			next = curr.getNext();
+			curr.setNext(prev);
+			prev = curr;
+			curr = next;
+		}
+		head = prev;
+		print();
+	}
 
 }
 
 public class LList_App {
 	public static void main(String[] args) {
-		LinkedList_Impl<String> list = new LinkedList_Impl<String>();
-		list.insert_start(new SL_LinkedListNode<String>("Generic List"));// (new DL_LinkedListNode<String>("Generic
+		DL_LinkedList_Impl<String> list = new DL_LinkedList_Impl<String>();
+		list.insert_start(new DL_LinkedListNode<String>("Generic List"));// (new DL_LinkedListNode<String>("Generic
 																			// list"));
-		list.insert_start(new SL_LinkedListNode<String>("Hello"));
-		list.insert_start(new SL_LinkedListNode<String>("World"));
-		list.insert_end(new SL_LinkedListNode<String>("End of the list"));
+		list.insert_start(new DL_LinkedListNode<String>("Hello"));
+		list.insert_start(new DL_LinkedListNode<String>("World"));
+		list.insert_end(new DL_LinkedListNode<String>("End of the list"));
 		list.print();
-		list.remove_end();
-		System.out.println("After removing the head..");
-		list.print();
+		//list.remove_end();
+		//System.out.println("After removing the head..");
+		//list.print();
+		list.reverseList();
 	}
 
 }
