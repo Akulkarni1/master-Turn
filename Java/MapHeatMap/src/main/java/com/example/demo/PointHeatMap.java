@@ -13,41 +13,38 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
-@Table(name = "areas")
-public class Area {
+@Table(name = "pointheatmap")
+public class PointHeatMap {
 
-       @Id  
+       @Id
        @GeneratedValue(strategy = GenerationType.IDENTITY)
        @Column(name="ID")
        private long id;
-       @Column(name="featureId")
-      UUID featureId;
-       @Column(name = "type") 
-       String type; 
-       //Map<String, Object> attributes;
        
+       @Column(name="feature_id")
+      UUID featureId;
+      
+       @Temporal(TemporalType.TIMESTAMP)
+       public Date date;
         @Column(name = "geom")
-        Geometry geometry;
-        
-        protected Area() {}
-
-        public Area(int id,UUID newValFeature, Geometry newValGeom, String newValType) {
+       Geometry geometry;
+        public PointHeatMap() {}
+        public PointHeatMap(int id,UUID newValFeature, Geometry newValGeom,Date date) {
             this.id = id;
             this.featureId = newValFeature;
             this.geometry = newValGeom;
-            this.type = newValType;
+            this.date =date;
             
         }
 
         @Override
         public String toString() {
             return String.format(
-                    "Area[id=%d, FeatureID ='%s', type='%s',Geom = '%s']",
-                    id, featureId, type,geometry);
+                    "Point[id=%d, FeatureID ='%s', type='%s',Geom = '%s',attributes = '%s',time ='%s']",
+                    id, featureId, geometry,date);
         }
 
         
@@ -71,17 +68,16 @@ public class Area {
         }
 
         
-        public String getType() {
-            return type;
+
+        public Date getDate() {
+            return date;
         }
 
         
-        public void setType(String type) {
-            this.type = type;
+        public void setDate(Date date) {
+            this.date = date;
         }
 
-
-        
         
         public Geometry getGeometry() {
             return geometry;

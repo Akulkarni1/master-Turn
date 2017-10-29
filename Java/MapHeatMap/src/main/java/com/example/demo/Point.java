@@ -17,8 +17,8 @@ import org.hibernate.annotations.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
-@Table(name = "areas")
-public class Area {
+@Table(name = "point")
+public class Point {
 
        @Id  
        @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +33,9 @@ public class Area {
         @Column(name = "geom")
         Geometry geometry;
         
-        protected Area() {}
+        protected Point() {}
 
-        public Area(int id,UUID newValFeature, Geometry newValGeom, String newValType) {
+        public Point(int id,UUID newValFeature, Geometry newValGeom, String newValType) {
             this.id = id;
             this.featureId = newValFeature;
             this.geometry = newValGeom;
@@ -46,7 +46,7 @@ public class Area {
         @Override
         public String toString() {
             return String.format(
-                    "Area[id=%d, FeatureID ='%s', type='%s',Geom = '%s']",
+                    "Point[id=%d, FeatureID ='%s', type='%s',Geom = '%s']",
                     id, featureId, type,geometry);
         }
 
