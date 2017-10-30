@@ -17,7 +17,7 @@ import org.hibernate.annotations.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
-@Table(name = "point")
+@Table(name = "points")
 public class Point {
 
        @Id  

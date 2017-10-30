@@ -83,7 +83,7 @@ public class MapHeatMapApplication {
                   
           }
           
-          //Below is code of checking Geom.
+          //Below is code of checking Geom for point.
           
           HashMap<UUID,GeomType> pointTable =new HashMap<UUID, GeomType>();
           pointTable = area.createPointArea();
@@ -92,27 +92,29 @@ public class MapHeatMapApplication {
               i++;
               GeomType e =(GeomType)entry2.getValue();
               
-              pointRepository.save(new Point(i,(UUID)entry2.getKey(),e.getGeometry(),e.getType()));
+              pointRepository.save(new Point(i,(UUID)entry2.getKey(),e.getGeometry(),"Point"));
           }
           
           //Creating point for now to compare the existing geom.
           WKTReader reader2 = new WKTReader();
 		  
 		  Geometry geom =reader2.read("POINT(-110 23)");
-          UUID featureIdHeatMapPoint=UUID.fromString( "00004245-3200-3c00-0000-00005968978a");
-          List<Area> searchPoint = null;
+          UUID featureIdHeatMapPoint=UUID.fromString( "00004245-3200-3c00-0000-00005968973a");
+          /*
+          List<Point> searchpoint = null;
           try {
-                  searchPoint = pointRepository.findByFeatureId(featureIdHeatMapPoint);
-                  SimpleDateFormat sdf2 = new SimpleDateFormat("dd-M-yyyy");
-                  String dateInString2 = "31-08-2016";
-                  System.out.println(searchPoint);
-                  Date date2 = sdf2.parse(dateInString2);
-                  if(!searchPoint.get(0).getGeometry().equals( geom)) {
-                      pointHeatMapRepo.save(new PointHeatMap(1,featureIdHeatMapPoint, geom,date2));
+              searchpoint = pointRepository.findByFeatureId(featureId_heatMap);
+                  SimpleDateFormat sdf3 = new SimpleDateFormat("dd-M-yyyy");
+                  String dateInString3 = "31-08-2016";
+                  System.out.println(searchpoint);
+                  Date date3 = sdf3.parse(dateInString3);
+                  if(!searchpoint.get(0).getGeometry().equals( geom)) {
+                      pointHeatMapRepo.save(new PointHeatMap(1,featureIdHeatMapPoint, geom,date3));
                   }
 
-                  if(search==null) {
-                      pointHeatMapRepo.save(new PointHeatMap(1,featureIdHeatMapPoint, geom,date2));
+                  if(searchpoint==null) {
+                      pointHeatMapRepo.save(new PointHeatMap(1,featureIdHeatMapPoint, geom,date3));
+                      
                   }
                   
           }
@@ -120,6 +122,8 @@ public class MapHeatMapApplication {
               System.out.println(ne);
                   
           }
+          */
+          
           
           
         };

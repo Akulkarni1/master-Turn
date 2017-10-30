@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public interface PointRepository extends CrudRepository<Point, Long>  {
 
     
-    List<Area> findByFeatureId(UUID featureId);
+    List<Point> findByFeatureId(UUID featureId);
 
-    List<Area> findByGeometry(Geometry geometry);
+    List<Point> findByGeometry(Geometry geometry);
 }

@@ -9,5 +9,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface PointHeatMapRepository extends CrudRepository<PointHeatMap, Long>  {
 
     
-    List<AreaHeatMap> findByFeatureId(String featureId);
+    List<PointHeatMap> findByFeatureId(String featureId);
 }
