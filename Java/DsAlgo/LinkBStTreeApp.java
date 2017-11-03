@@ -1,19 +1,20 @@
+
 /*
  * @Author Amit .K
  */
 import java.util.*;
 
-public class Link_BST_Tree_App<T extends Comparable<T>> implements Iterable<T> {
+public class LinkBStTreeApp<T extends Comparable<T>> implements Iterable<T> {
 	public static void main(String[] args) {
 		String[] a = { "Amit", "Hello", "World" };
-		Link_BST_Tree_App<String> bst = new Link_BST_Tree_App<String>();
+		LinkBStTreeApp<String> bst = new LinkBStTreeApp<String>();
 		for (String n : a)
 			bst.insert(n);
 
 		bst.preOrderTraversal();
 		System.out.println();
 
-		bst = new Link_BST_Tree_App<String>(new Comp1());
+		bst = new LinkBStTreeApp<String>(new Comp1());
 		for (String n : a)
 			bst.insert(n);
 
@@ -28,7 +29,7 @@ public class Link_BST_Tree_App<T extends Comparable<T>> implements Iterable<T> {
 
 		System.out.println(bst);
 
-		bst.restore(new String[] { "Girish", "Ankit A", "Ankit S" }, new String[] { "Rob S", "Ankit A" });
+		bst.restore(new String[] { "Girish", "Ankit A", "Ankit S" }, new String[] { "Steven G", "Ankit A" });
 		bst.preOrderTraversal();
 		System.out.println();
 		bst.inOrderTraversal();
@@ -43,12 +44,12 @@ public class Link_BST_Tree_App<T extends Comparable<T>> implements Iterable<T> {
 	private Node<T> root;
 	private Comparator<T> comparator;
 
-	public Link_BST_Tree_App() {
+	public LinkBStTreeApp() {
 		root = null;
 		comparator = null;
 	}
 
-	public Link_BST_Tree_App(Comparator<T> comp) {
+	public LinkBStTreeApp(Comparator<T> comp) {
 		root = null;
 		comparator = comp;
 	}
@@ -94,7 +95,6 @@ public class Link_BST_Tree_App<T extends Comparable<T>> implements Iterable<T> {
 			return search(p.right, toSearch);
 	}
 
-
 	public void delete(T toDelete) {
 		root = delete(root, toDelete);
 	}
@@ -128,7 +128,6 @@ public class Link_BST_Tree_App<T extends Comparable<T>> implements Iterable<T> {
 		return p.data;
 	}
 
-
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		for (T data : this)
@@ -136,7 +135,6 @@ public class Link_BST_Tree_App<T extends Comparable<T>> implements Iterable<T> {
 
 		return sb.toString();
 	}
-
 
 	public void preOrderTraversal() {
 		preOrderHelper(root);
@@ -162,13 +160,13 @@ public class Link_BST_Tree_App<T extends Comparable<T>> implements Iterable<T> {
 		}
 	}
 
-	public Link_BST_Tree_App<T> clone() {
-		Link_BST_Tree_App<T> twin = null;
+	public LinkBStTreeApp<T> clone() {
+		LinkBStTreeApp<T> twin = null;
 
 		if (comparator == null)
-			twin = new Link_BST_Tree_App<T>();
+			twin = new LinkBStTreeApp<T>();
 		else
-			twin = new Link_BST_Tree_App<T>(comparator);
+			twin = new LinkBStTreeApp<T>(comparator);
 
 		twin.root = cloneHelper(root);
 		return twin;
@@ -194,6 +192,76 @@ public class Link_BST_Tree_App<T extends Comparable<T>> implements Iterable<T> {
 
 	public int countLeaves() {
 		return countLeaves(root);
+	}
+
+	public void verticalTraversal(Node<T> t) {
+		// private Node<T> temp = root;
+
+		int[] minmax = new int[] { Integer.MAX_VALUE, Integer.MIN_VALUE };
+		Map<Integer, ArrayList<Node<T>>> verticals = new HashMap<Integer, ArrayList<Node<T>>>();
+		// traverse(root,verticals,0, minmax);
+		traverse(t, verticals, 0, minmax);
+		for (int i = minmax[0]; i <= minmax[1]; i++) {
+			if (verticals.containsKey(i)) {
+				for (Node vnode : verticals.get(i)) {
+					System.out.println(vnode.data + ",");
+				}
+				System.out.println();
+			}
+		}
+	}
+
+	public void zigzag(Node<T> root) {
+		Queue<Node<T>> queue = new ArrayDeque<Node<T>>();
+		queue.offer(root);
+		Node<T> node = null;
+		int count = 1;
+		int level = 0;
+		Stack<Node<T>> reverse = new Stack<Node<T>>();
+		while (!queue.isEmpty()) {
+			node = queue.poll();
+			count--;
+			if ((level & 1) == 0) {
+				reverse.push(node);
+			} else {
+				System.out.println(node.data);
+			}
+			if (node.left != null) {
+				queue.offer(node.left);
+			}
+			if (node.right != null) {
+				queue.offer(node.right);
+			}
+
+			// level ended
+			if (count == 0) {
+				if ((level & 1) == 0) {
+					while (!reverse.isEmpty()) {
+						System.out.print(reverse.pop().data);
+					}
+				}
+				System.out.println();
+
+				count = queue.size();
+				level++;
+			}
+		}
+	}
+
+	public void traverse(Node<T> node, Map<Integer, ArrayList<Node<T>>> verticals, int score, int[] minmax) {
+		if (!verticals.containsKey(score)) {
+			verticals.put(score, new ArrayList<Node<T>>());
+		}
+		verticals.get(score).add(node);
+		minmax[0] = Math.min(minmax[0], score);
+		minmax[1] = Math.max(minmax[1], score);
+
+		if (node.left != null) {
+			traverse(node.left, verticals, score - 1, minmax);
+		}
+		if (node.right != null) {
+			traverse(node.right, verticals, score + 1, minmax);
+		}
 	}
 
 	private int countLeaves(Node<T> p) {
@@ -289,6 +357,7 @@ public class Link_BST_Tree_App<T extends Comparable<T>> implements Iterable<T> {
 
 			return cur.data;
 		}
+
 		public void remove() {
 
 		}
