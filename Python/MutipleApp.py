@@ -17,7 +17,19 @@ for key in tempDict.items():
 for key,value in tempDict.items():
     print(key,value)
 
-
+#patching of the array.
+def minPatches(nums, n):
+    sum = 1
+    i = 0
+    count = 0
+    while sum <= n:
+        if i < nums.__len__() and nums[i] <= sum:
+            sum = sum+nums[i]
+            i =i+1
+        else:
+            sum <<= 1
+            count= count+1
+    print(count)
 #this is the application for mulitplying big numbers.
 
 def multiply(a,b):
