@@ -26,10 +26,10 @@ def multiply(a,b):
     temp =0;
     if(b>10):
         while(b>10):
-            temp = b%10;
+            temp = b%10
             result.insert(count,a*temp);
             count =count+1
-            b=int(b/10);
+            b=int(b/10)
         result.insert(count,a*b);
     print(result)
     add(result)
