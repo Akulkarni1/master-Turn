@@ -26,7 +26,12 @@ targetSum=15
 DATA = [1,3,4,5,6,2,7,8,9,10,11,13,14,15]
 def populateSubset (data, fromIndex,endIndex,sumInStack,targetSum):
     if sumInStack == targetSum:
-        print(s)
+        length = s.size();
+        i=0
+        while i<length:
+            print(s.pop())
+            i=i+1
+
     currentIndex=fromIndex
     while currentIndex < endIndex :
         if sumInStack + data[currentIndex] <= targetSum:
