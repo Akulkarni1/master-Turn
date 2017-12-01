@@ -11,10 +11,12 @@ import java.io.Serializable;
 class Emp implements Serializable {
 	int id;
 	String name;
+	transient String add;
 
-	Emp(int id, String name) {
+	Emp(int id, String name, String add) {
 		this.id = id;
 		this.name = name;
+		this.add = add;
 	}
 
 	public int getId() {
@@ -38,7 +40,7 @@ class Emp implements Serializable {
 public class EmpApp {
 	public static void main(String[] args) throws IOException, Exception {
 		String filename = "temp.txt";
-		Emp e1 = new Emp(1000, "Amit");
+		Emp e1 = new Emp(1000, "Amit", "India");
 		FileOutputStream file = new FileOutputStream(filename);
 		ObjectOutputStream out = new ObjectOutputStream(file);
 
@@ -49,7 +51,7 @@ public class EmpApp {
 
 		ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename));
 		Emp s = (Emp) in.readObject();
-		System.out.println(s.id + " " + s.name);
+		System.out.println(s.id + " " + s.name + " " + s.add);
 		System.out.println("Success");
 	}
 }
