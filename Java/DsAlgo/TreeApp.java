@@ -1,16 +1,16 @@
 import java.util.LinkedList;
 
-class Node{
+class TreeNode{
 	int data;
 	String dat;
-	Node left, right;
-	Node(){
+	TreeNode left, right;
+	TreeNode(){
 		data =-1;
 		dat = "";
 		left = null;
 		right =null;
 	}
-	Node(int newVal,String string){
+	TreeNode(int newVal,String string){
 		data = newVal;
 		dat = string;
 		left = null;
@@ -28,30 +28,39 @@ class Node{
 	public void setDat(String dat) {
 		this.dat = dat;
 	}
-	public Node getLeft() {
+	public TreeNode getLeft() {
 		return left;
 	}
-	public void setLeft(Node left) {
+	public void setLeft(TreeNode left) {
 		this.left = left;
 	}
-	public Node getRight() {
+	public TreeNode getRight() {
 		return right;
 	}
-	public void setRight(Node right) {
+	public void setRight(TreeNode right) {
 		this.right = right;
 	}
 	
 	public String toString() {
 		return " "+dat+""+data;
 	}
-	public Node rightMostCousin(Node root,int target) {
-		LinkedList<Node>q = new LinkedList<Node>();
+}
+class TreeImpl{
+	TreeNode root;
+	TreeImpl(){
+		root =null;
+	}
+	public void addNode() {
+		
+	}
+	public TreeNode rightMostCousin(TreeNode root,int target) {
+		LinkedList<TreeNode>q = new LinkedList<TreeNode>();
 		int count =0;
 		q.add(root);
 		count++;
 		boolean targetLevel =false;
 		while(!q.isEmpty()) {
-			Node node = q.remove();
+			TreeNode node = q.remove();
 			count--;
 			if(node.data==target) {
 				targetLevel= true;
