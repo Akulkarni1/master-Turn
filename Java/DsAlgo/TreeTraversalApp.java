@@ -161,6 +161,28 @@ class TreeTraversalImpl {
 		return node.getData();
 	}
 
+	public void printLevelOrder(TreeNode node) {
+		Queue<TreeNode> q = new LinkedList<TreeNode>();
+		q.offer(root);
+		TreeNode n = null;
+		int count = 1;
+		while (!q.isEmpty()) {
+			node = q.poll();
+			count--;
+			System.out.println(n.data);
+			if (n.left != null) {
+				q.offer(n.left);
+			}
+			if (n.right != null) {
+				q.offer(n.right);
+			}
+			if (count == 0) {
+				System.out.println();
+				count = q.size();
+			}
+		}
+	}
+
 }
 
 public class TreeTraversalApp {
