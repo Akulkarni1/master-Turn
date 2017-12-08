@@ -1,3 +1,6 @@
+/*
+ * Given a string, find the longest substrings without repeating characters. Iterate through the given string, find the longest maximum substrings.
+ */
 import java.util.HashSet;
 import java.util.Set;
 
