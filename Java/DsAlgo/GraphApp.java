@@ -145,6 +145,28 @@ class Graph {
 		}
 	}
 
+	public void mst() {
+		vertexList[0].wasvisited = true;
+		thestack.push(0);
+		while (!thestack.isEmpty()) {
+			int currentVertex = thestack.peek();
+			int v = getAdjUnvisitedVertex(currentVertex);
+			if (v == -1) {
+				thestack.pop();
+
+			} else {
+				vertexList[v].wasvisited = true;
+				thestack.push(v);
+				displayVertex(currentVertex);
+				displayVertex(v);
+				System.out.println(" ");
+			}
+		}
+		for (int j = 0; j < nVerts; j++) {
+			vertexList[j].wasvisited = false;
+		}
+	}
+
 }
 
 public class GraphApp {
