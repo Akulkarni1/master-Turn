@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class FindAnagramApp {
@@ -62,4 +64,66 @@ public class FindAnagramApp {
 		return String.valueOf(tempArr);
 	}
 
+}
+
+/*
+ * Given a dictionary and a word. Find all the anagrams of the given word in the
+ * dictionary.
+ */
+class Dictionary {
+	private Set<String> dict = new HashSet<String>();
+
+	public void add(String word) {
+		dict.add(word);
+	}
+
+	public void addAll(List<String> words) {
+		dict.addAll(words);
+	}
+
+	public boolean remove(String word) {
+		return dict.remove(word);
+	}
+
+	public String getKey(String str) {
+		str = str.toLowerCase().trim();
+		int[] hist = new int[256];
+		for (int i = 0; i < str.length(); i++) {
+			hist[str.charAt(i)]++;
+		}
+		StringBuilder sb = new StringBuilder();
+		for (int val : hist) {
+			sb.append(val);
+		}
+		return sb.toString();
+	}
+
+	public int searchAnagram(String pattern) {
+		int count = 0;
+		HashMap<String, List<String>> histMap = new HashMap<String, List<String>>();
+
+		for (String word : dict) {
+			String key = getKey(word);
+			if (!histMap.containsKey(key)) {
+				histMap.put(key, new ArrayList<String>());
+			}
+
+			histMap.get(key).add(word);
+		}
+
+		String searchKey = getKey(pattern);
+		List<String> res = histMap.get(searchKey);
+
+		if (res != null) {
+			count = res.size();
+
+			System.out.print("anagrams in dict: ");
+			for (String s : res) {
+				System.out.print(s + " ");
+			}
+			System.out.println();
+		}
+
+		return count;
+	}
 }
