@@ -42,6 +42,30 @@ public class ExecutorServiceSample {
 		}
 	}
 
+	public static ConcurrentHashMap<String, Integer> calculateSumUsingThread(ArrayList<ArrayList<Integer>> data) {
+		ConcurrentHashMap<String, Integer> result = new ConcurrentHashMap<String, Integer>();
+		List<Thread> threads = new ArrayList<Thread>();
+		int i = 1;
+		for (ArrayList<Integer> integers : data) {
+
+			String arrayName = "Array " + i;
+
+			Thread thread = new Thread(new ArraySumCalculator(result, integers, arrayName));
+			threads.add(thread);
+			i++;
+		}
+		for (Thread thread : threads) {
+			thread.start();
+			try {
+				thread.join();
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			}
+		}
+
+		return result;
+	}
+
 	private static ConcurrentHashMap<String, Integer> calculateSumUsingExecutor(ArrayList<ArrayList<Integer>> data) {
 		ConcurrentHashMap<String, Integer> result = new ConcurrentHashMap<String, Integer>();
 		ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors() + 1);
