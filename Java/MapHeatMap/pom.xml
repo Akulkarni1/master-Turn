@@ -78,12 +78,12 @@
 
 
         <dependency>
-            <groupId>com.tomtom.cp.pc.jts.io</groupId>
+            <groupId>com.cp.pc.jts.io</groupId>
             <artifactId>jts-io-ttom</artifactId>
             <version>1.1</version>
             <exclusions>
                 <exclusion>
-                    <groupId>com.tomtom.cpu.api</groupId>
+                    <groupId>com.cpu.api</groupId>
                     <artifactId>generic-api</artifactId>
                 </exclusion>
             </exclusions>
