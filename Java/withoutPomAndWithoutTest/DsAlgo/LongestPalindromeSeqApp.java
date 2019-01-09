@@ -64,6 +64,42 @@ public class LongestPalindromeSeqApp {
 
         return all;
     }
+
+    //Another way.
+
+    public int findPalingdrome(String A){
+
+        char[] chars = A.toCharArray();
+        int [][]lp= new int[chars.length][chars.length];
+        for(int i=0;i<chars.length;i++){
+            lp[i][i]=1;
+        }
+        for(int sublen=2;sublen<=chars.length;sublen++){
+            for(int i=0;i<=lp.length-sublen;i++){
+                int j= i+sublen-1;
+                if(chars[i]== chars[j]&&sublen==2){
+                    lp[i][j]=2;
+                }
+                else if(chars[i]==chars[j]){
+                    lp[i][j]=lp[i+1][j-1]+2;
+                }
+                else{
+                    lp[i][j]=Math.max(lp[i+1][j],lp[i][j-1]);
+                }
+            }
+        }
+        printMatrix(lp);
+        return lp[0][lp.length-1];
+    }
+
+    private void printMatrix(int[][] lp) {
+        for(int i=0;i<lp.length;i++){
+            for(int j=0;j<lp.length;j++){
+                System.out.print("  " + lp[i][j]);
+            }
+            System.out.println("");
+        }
+    }
 }
 
 
