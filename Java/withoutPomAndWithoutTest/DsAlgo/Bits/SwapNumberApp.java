@@ -10,5 +10,14 @@ public class SwapNumberApp {
 		
 		System.out.println(a+" "+b);
 		
+		System.out.println(numberSame(50,150));
+	}
+	public static boolean numberSame(int a,int b) {
+		
+
+	    if ((a ^ b) != 0)  
+	    return false;  
+	    else 
+	        return true; 
 	}
 }
