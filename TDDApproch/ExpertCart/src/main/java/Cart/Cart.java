@@ -9,7 +9,9 @@ public class Cart {
     public Cart(){
         mapCart = new HashMap<>();
     }
-
+    public int getSize(){
+        return mapCart.size();
+    }
     public Map<Product, Integer> getMapCart() {
         return mapCart;
     }

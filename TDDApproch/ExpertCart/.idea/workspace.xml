@@ -28,8 +28,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/ShoppingCartTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="316">
+              <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -37,12 +40,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Cart/Cart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="316">
-              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+            <state relative-caret-position="98">
+              <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#182#183#0" expanded="true" />
                 <element signature="e#220#221#0" expanded="true" />
+                <element signature="e#232#233#0" expanded="true" />
+                <element signature="e#254#255#0" expanded="true" />
                 <element signature="e#231#232#0" expanded="true" />
                 <element signature="e#261#262#0" expanded="true" />
                 <element signature="e#327#328#0" expanded="true" />
@@ -171,7 +176,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ShoppingCartTest.TestWithDifferentProduct">
+  <component name="RunManager" selected="JUnit.ShoppingCartTest">
+    <configuration name="ShoppingCartTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ExpertCart" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ShoppingCartTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ShoppingCartTest.TestWithDifferentProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ExpertCart" />
       <option name="PACKAGE_NAME" value="" />
@@ -194,6 +208,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ShoppingCartTest" />
         <item itemvalue="JUnit.ShoppingCartTest.TestWithDifferentProduct" />
         <item itemvalue="JUnit.ShoppingCartTest.TestWithNoProduct" />
       </list>
@@ -213,9 +228,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ShoppingCartTest_TestWithNoProduct - 2019.04.22 at 17h 33m 03s.xml">
-      <configuration name="ShoppingCartTest.TestWithNoProduct" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ShoppingCartTest_TestWithNoProduct - 2019.04.22 at 19h 19m 33s.xml">
       <configuration name="ShoppingCartTest.TestWithNoProduct" configurationId="JUnit" />
     </history-entry>
@@ -233,6 +245,18 @@
     </history-entry>
     <history-entry file="ShoppingCartTest_TestWithDifferentProduct - 2019.04.22 at 19h 38m 33s.xml">
       <configuration name="ShoppingCartTest.TestWithDifferentProduct" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ShoppingCartTest_TestWithDifferentProduct - 2019.04.22 at 21h 44m 35s.xml">
+      <configuration name="ShoppingCartTest.TestWithDifferentProduct" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ShoppingCartTest_TestWithDifferentProduct - 2019.04.22 at 21h 44m 49s.xml">
+      <configuration name="ShoppingCartTest.TestWithDifferentProduct" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ShoppingCartTest - 2019.04.22 at 21h 44m 55s.xml">
+      <configuration name="ShoppingCartTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ShoppingCartTest - 2019.04.22 at 22h 09m 19s.xml">
+      <configuration name="ShoppingCartTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -292,22 +316,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Cart/Cart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#182#183#0" expanded="true" />
-            <element signature="e#220#221#0" expanded="true" />
-            <element signature="e#231#232#0" expanded="true" />
-            <element signature="e#261#262#0" expanded="true" />
-            <element signature="e#327#328#0" expanded="true" />
-            <element signature="e#365#366#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Cart/Product.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
@@ -325,10 +333,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Cart/Cart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#182#183#0" expanded="true" />
+            <element signature="e#220#221#0" expanded="true" />
+            <element signature="e#232#233#0" expanded="true" />
+            <element signature="e#254#255#0" expanded="true" />
+            <element signature="e#231#232#0" expanded="true" />
+            <element signature="e#261#262#0" expanded="true" />
+            <element signature="e#327#328#0" expanded="true" />
+            <element signature="e#365#366#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/ShoppingCartTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="316">
+          <caret line="40" column="39" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

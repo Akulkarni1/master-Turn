@@ -13,7 +13,7 @@ public class ShoppingCartTest {
         assertEquals(0,c.getTotal().intValueExact());
     }
     @Test
-    public void TestWithDifferentProduct(){
+    public void TestWithSingleProduct(){
         Product p = new Product();
         p.setName("Dove Soap");
         p.setPrice(BigDecimal.valueOf(39.30));
@@ -21,5 +21,24 @@ public class ShoppingCartTest {
         Cart cart = new Cart();
         cart.populateMap(p,4);
         assertEquals(157.2,cart.getTotal().doubleValue());
+
     }
+    @Test
+    public void testWithDifferentProduct(){
+        Product p = new Product();
+        p.setName("Dove Soap");
+        p.setPrice(BigDecimal.valueOf(39.30));
+
+        Product p1 = new Product();
+        p1.setName("Dove Soap");
+        p1.setPrice(BigDecimal.valueOf(39.30));
+
+        Cart cart = new Cart();
+        cart.populateMap(p,4);
+        cart.populateMap(p1,4);
+
+        assertEquals(314.4,cart.getTotal().doubleValue());
+        assertEquals(1,cart.getSize());
+    }
+
 }
