@@ -1,41 +1,36 @@
-import java.util.*;
+package Algorithm;
+
+import java.util.Stack;
 
 public class ParenthesisValidation {
 	public static void main(String[] args) {
-	String[] s = {"{([{{])}","([{}])","{}[]()"};
-	for(int i =0;i<s.length;i++) {
-		if(isValidParenthesis(s[i])) {
-			System.out.println("Yes");
-		}
-		else {
-			System.out.println("No");
-		}
+		System.out.println(isParenthesisBalanced("(())"));
 	}
-	}
-	public static boolean isValidParenthesis(String s) {
+	public static boolean isParenthesisBalanced(String str) {
+		boolean result = false;
+		Stack<Character> stack = new Stack<>();
 		
-			Stack<Character> stack = new Stack<Character>();
-			boolean result = false;
-			try {
-			for(int i =0;i<s.length();i++){
-				if(s.charAt(i)=='{'||s.charAt(i)=='['||s.charAt(i)=='(') {
-					stack.push(s.charAt(i));
-				}
-				char c;
-				if((s.charAt(i)=='}'||s.charAt(i)==']'||s.charAt(i)==')')&&!stack.isEmpty()) {
-					c =stack.pop();
-					if(s.charAt(i)=='}'&&c=='{')
-						result = true;
-					if(s.charAt(i)==']'&&c=='[')
-						result = true;
-					if(s.charAt(i)=='('&&c==')')
-						result = true;
-				}
+		for(int i=0;i<str.length();i++) {
+			if(str.charAt(i)=='('||str.charAt(i)=='['||str.charAt(i)=='{'||str.charAt(i)=='<') {
+				stack.push(str.charAt(i));
 				
+			}	
+			else {
+				if(!stack.isEmpty()) {
+					//char ch =stack.pop();
+					if(stack.pop()=='('&&str.charAt(i)==')')
+					result = true;
+					else if(stack.pop()=='['&&str.charAt(i)==']')
+						result = true;
+					else if(stack.pop()=='{'&& str.charAt(i)=='}')
+						result = true;
+					else if(stack.pop()=='<'&& str.charAt(i)=='>')
+						result = true;
+				}
+				else {
+					return false;
+				}
 			}
-		}
-		catch(EmptyStackException e) {
-				e.printStackTrace();
 		}
 		return result;
 	}
