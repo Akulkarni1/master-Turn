@@ -14,6 +14,7 @@ setNewNumber when we update the state.
 4.)shouldComponentUpdate: this method return true or false value.This
 will determine if the component will be updated  or not.This is set to
 true by default. If you are sure that the component doesnt need to render
+after state or props are updated. You can return false value.
 5.)componentWillUpdate: is called just before rendering.
 6.)componentDidupdate: is called just after rendering.
 7.)componentWillUnmount: is called after the component is unmounted from
