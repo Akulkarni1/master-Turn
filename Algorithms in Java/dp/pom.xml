@@ -20,16 +20,16 @@
         <version>1.7.1</version>
         <scope>compile</scope>
     </dependency>
-    <dependency>
+     <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
-        <version>RELEASE</version>
-        <scope>compile</scope>
+        <version>1.18.20</version>
+        <scope>provided</scope>
     </dependency>
+
 </dependencies>
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
-
 </project>
