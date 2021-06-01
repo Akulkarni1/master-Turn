@@ -1,7 +1,7 @@
 import {ThemeContext, themes} from './theme-context';
 import ThemeTogglerButton from './theme-toggler-button';
 
-class App extends React.Component {
+class NestedContextComponent extends React.Component {
   constructor(props) {
     super(props);
 
@@ -14,8 +14,6 @@ class App extends React.Component {
       }));
     };
 
-    // State also contains the updater function so it will
-    // be passed down into the context provider
     this.state = {
       theme: themes.light,
       toggleTheme: this.toggleTheme,
