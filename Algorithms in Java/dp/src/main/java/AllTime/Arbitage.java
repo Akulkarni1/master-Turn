@@ -47,7 +47,7 @@ public class Arbitage {
       for (int i = 0; i < graph.size(); ++i) {
          for (int j = 0; j < graph.get(i).size(); ++j) {
             if (disToSource.get(i) != Double.MAX_VALUE
-                    && disToSource.get(i) > disToSource.get(i) + G.get(i).get(j)
+                    && disToSource.get(i) > disToSource.get(i) + graph.get(i).get(j)
             ) {
                return true;
             }
